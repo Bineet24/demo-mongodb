@@ -97,7 +97,7 @@ exports.deleteAcc = async (req, res) => {
   
     req.body.map(async id=>{
 
-      await Acc.deleteOne({externalId__c:Object.values(id)});
+      await Acc.deleteOne({externalId__c:id.Description});
     })
    // await Acc.findByIdAndDelete(req.params.id);
 
