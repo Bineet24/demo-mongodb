@@ -71,9 +71,9 @@ exports.updateAcc = async (req, res) => {
   
     req.body.map(async id=>{
       // console.log(id.externalId);
-      const searchObject= req.body.find((ac) => ac.externalId==id.externalId);
+      const searchObject= req.body.find((ac) => ac.externalId__c==id.externalId__c);
       // console.log(searchObject);
-      const newAcc= await Acc.updateMany({externalId:id.externalId},searchObject);
+      const newAcc= await Acc.updateMany({externalId__c:id.externalId__c},searchObject);
    
     })
     // const newAcc= await Acc.updateMany(req.params.id, req.body)
@@ -97,7 +97,7 @@ exports.deleteAcc = async (req, res) => {
   
     req.body.map(async id=>{
 
-      await Acc.deleteOne({externalId:Object.values(id)});
+      await Acc.deleteOne({externalId__c:Object.values(id)});
     })
    // await Acc.findByIdAndDelete(req.params.id);
 
