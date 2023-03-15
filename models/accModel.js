@@ -11,7 +11,7 @@ const accSchema = new mongoose.Schema(
       Phone:{
         type:String
       },
-      externalId:{
+      externalId__c:{
         type:String
       },
         email: {
