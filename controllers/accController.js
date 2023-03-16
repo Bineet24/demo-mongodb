@@ -71,9 +71,9 @@ exports.updateAcc = async (req, res) => {
   
     req.body.map(async id=>{
       // console.log(id.externalId);
-      const searchObject= req.body.find((ac) => ac.externalId__c==id.externalId__c);
+      const searchObject= req.body.find((ac) => ac.Id==id.Id);
       // console.log(searchObject);
-      const newAcc= await Acc.updateMany({externalId__c:id.externalId__c},searchObject);
+      const newAcc= await Acc.updateMany({Id:id.Id},searchObject);
    
     })
     // const newAcc= await Acc.updateMany(req.params.id, req.body)
