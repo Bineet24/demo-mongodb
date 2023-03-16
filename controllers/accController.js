@@ -94,11 +94,17 @@ exports.updateAcc = async (req, res) => {
   
 exports.deleteAcc = async (req, res) => {
   try {
-  
-    req.body.map(async id=>{
+    await Acc.deleteMany(
+      {
+        Id:{
+          $in:req.body
+        }
+      }
+    )
+   // req.body.map(async id=>{
 
-      await Acc.deleteOne({Id:id.Description});
-    })
+     // await Acc.deleteOne({Id:id.Description});
+   // })
    // await Acc.findByIdAndDelete(req.params.id);
 
     res.status(204).json({
