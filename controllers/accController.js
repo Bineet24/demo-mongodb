@@ -10,7 +10,7 @@ exports.createAcc = async (req, res) => {
       res.status(201).json({
         status: 'success',
         data: {
-          acc: newAcc
+           newAcc
         }
       });
     } catch (err) {
