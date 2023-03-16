@@ -94,6 +94,7 @@ exports.updateAcc = async (req, res) => {
   
 exports.deleteAcc = async (req, res) => {
   try {
+      console.log(req.body);
     await Acc.deleteMany(
       {
         Id:{
