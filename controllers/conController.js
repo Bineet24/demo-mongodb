@@ -29,9 +29,9 @@ exports.createCon = async (req, res) => {
   
       res.status(201).json({
         status: 'success',
-        // data: {
-        //   updateCon
-        // } 
+         data: {
+           newAcc
+         } 
       });
     } catch (err) {
       res.status(400).json({
@@ -111,10 +111,13 @@ exports.deleteCon = async (req, res) => {
   try {
     // await Con.findByIdAndDelete(req.params.id);
     
-    req.body.map(async id=>{
-
-      await Con.deleteOne({externalId:Object.values(id)});
-    })
+  await Con.deleteMany(
+      {
+        Id:{
+          $in:req.body
+        }
+      }
+    )
     res.status(204).json({
       status: 'success',
       data: null
