@@ -9,9 +9,9 @@ exports.createAcc = async (req, res) => {
   
       res.status(201).json({
         status: 'success',
-        data: {
-           newAcc
-        }
+        data:  newAcc
+          
+        
       });
     } catch (err) {
       res.status(400).json({
