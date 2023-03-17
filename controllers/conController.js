@@ -24,25 +24,8 @@ exports.getAllCons = async (req, res) => {
 
 exports.createCon = async (req, res) => {
     try {
-       const results=[];
-      req.body.map(async id=>{ 
-      // console.log(id.externalId);
-      if(id.externalId){
-      const acc=await Acc.findOne({externalId: {$eq:id.externalId} }).lean()
-      // console.log(acc._id.toString());
-      // console.log(typeof(acc._id.toString()));
-      const newCon = await Con.create(id);
-      results.push(newCon._id);
-       updateCon = await Con.findByIdAndUpdate(newCon._id.toString(), {Account:""+acc._id} );
-      // id.test=acc._id.toString(); 
-      // console.log(id);
-      const temp=await Con.find(newCon._id);
-        // results.push(temp);
-    // console.log(updateCon);
-      }
-     })
-      // const newCon = await Con.insertMany(req.body);
-      // const newCon = await Con.create(req.body);
+       console.log(req.body);
+      const newAcc = await Con.insertMany(req.body);
   
       res.status(201).json({
         status: 'success',
