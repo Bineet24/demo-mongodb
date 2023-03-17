@@ -69,7 +69,7 @@ exports.updateAcc = async (req, res) => {
     // });
     // console.log(req.body);
   
-    req.body.map(async id=>{
+   const updatedAcc= await req.body.map(async id=>{
       // console.log(id.externalId);
       const searchObject= req.body.find((ac) => ac.Id==id.Id);
       // console.log(searchObject);
