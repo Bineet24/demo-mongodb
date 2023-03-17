@@ -3,22 +3,25 @@ const account = require('./accModel');
 
 const conSchema = new mongoose.Schema(
     {
-      name: {
+      FirstName: {
+        type: String,
+      },
+      LastName: {
         type: String,
         required: [true, 'A Contact must have a name'],
       },
-      externalId:{
+      Id:{
         type:String
       },
-      phone:{
+      MobilePhone:{
         type:String
       },  
-      email: {
+      Email: {
         type: String,
         lowercase: true,
        // validate: [validator.isEmail, 'Please provide a valid email']
       },
-      Account:{
+      Account__c:{
         type: mongoose.Schema.ObjectId,
         ref: 'Acc'
       },
@@ -39,7 +42,7 @@ const conSchema = new mongoose.Schema(
   conSchema.pre(/^find/, function(next) {
 
     this.populate({
-      path: 'Account',
+      path: 'Account__c',
       select: 'name '
     }); 
     next();
