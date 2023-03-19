@@ -6,10 +6,17 @@ exports.createAcc = async (req, res) => {
     try {
       console.log(req.body);
       const newAcc = await Acc.insertMany(req.body);
-  
+      
+     const result=[]
+     newAcc.map( id=>{
+      let person={}
+       person.Name=id.Name;
+       person.id=id.id;
+       result.push(person);
+     })
       res.status(201).json({
         status: 'success',
-        data:  newAcc
+        data:  result
           
         
       });
