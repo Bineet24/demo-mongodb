@@ -24,7 +24,11 @@ exports.getAllCons = async (req, res) => {
 
 exports.createCon = async (req, res) => {
     try {
-       console.log(req.body);
+     //  console.log(req.body);
+       if(req.body.length === 0){
+   
+      throw new Error('blank array');
+    }
       const newAcc = await Con.insertMany(req.body);
   
       res.status(201).json({
@@ -36,7 +40,7 @@ exports.createCon = async (req, res) => {
     } catch (err) {
       res.status(400).json({
         status: 'fail',
-        message: err
+        message: err.message
       });
     }
   };
@@ -88,9 +92,9 @@ exports.updateCon = async (req, res) => {
     // });
     req.body.map(async id=>{
       // console.log(id.externalId);
-      const searchObject= req.body.find((ac) => ac.externalId==id.externalId);
+      const searchObject= req.body.find((ac) => ac.Id==id.Id);
       // console.log(searchObject);
-      const newAcc= await Con.updateMany({externalId:id.externalId},searchObject);
+      const newAcc= await Con.updateMany({Id:id.Id},searchObject);
    
     })
     res.status(200).json({
@@ -110,7 +114,10 @@ exports.updateCon = async (req, res) => {
 exports.deleteCon = async (req, res) => {
   try {
     // await Con.findByIdAndDelete(req.params.id);
-    
+     if(req.body.length === 0){
+   
+      throw new Error('blank array');
+    }
   await Con.deleteMany(
       {
         Id:{
@@ -125,7 +132,7 @@ exports.deleteCon = async (req, res) => {
   } catch (err) {
     res.status(404).json({
       status: 'fail',
-      message: err
+      message: err.message
     });
   }
 };
